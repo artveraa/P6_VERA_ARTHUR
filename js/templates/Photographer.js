@@ -40,7 +40,5 @@ class Photographer {
         `
     }
 
-    createPhotographerGallery(){
-        
-    }
+
 }

@@ -2,43 +2,35 @@ class Detail {
     constructor() {
         let url = new URL(window.location);
         this.photographerId = url.searchParams.get("id");
-        this.mainDetail = document.querySelector('#main');
+        this.mainDetails = document.querySelector('#main');
+        this.gallerySection = document.querySelector('.gallery');
     }
 
     async init() {
         const data = await Api.get('/data/photographers.json')
         this.photographer = data.photographers.find((element) => element.id == this.photographerId)
         this.media = data.media.filter((element) => element.photographerId == this.photographerId)
-        let content = "";
+        let header = "";
+        let gallery = "";
 
-        const Template = new Photographer(this.photographer)
-        content += Template.createPhotographerDetail();
+        const Description = new Photographer(this.photographer)
+        header += Description.createPhotographerDetail();
 
-        this.mainDetail.insertAdjacentHTML("afterbegin", content);
+
 
         //
 
-        console.log(data.media)
-
-        const image = data.media.forEach(obj => {
-            obj.keys(obj).map(media => new MediaFactory(media, 'image'))
+        this.media.forEach(el => {
+            let media = new MediaFactory(el);
+            gallery += media.createMedia();
         })
 
-        const video = data.media.forEach(obj => {
-            obj.keys(obj).map(media => new MediaFactory(media, 'video'))
-        })
 
-        const allMediaTypes = image.concat(video)
 
-        console.log(allMediaTypes)
 
-        allMediaTypes.forEach(media => {
-            const Template = new Photographer(media)
-            content += Template.createPhotographerDetail()
-        })
 
-        this.mainDetail.insertAdjacentHTML("afterbegin", content);
-
+        this.mainDetails.insertAdjacentHTML("afterbegin", header)
+        this.gallerySection.insertAdjacentHTML("afterbegin", gallery);
     }
 }
 
