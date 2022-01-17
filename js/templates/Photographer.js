@@ -40,5 +40,44 @@ class Photographer {
         `
     }
 
+    createContactModal(){
+        return `
+            <div class="modal">
+        <header>
+            <h2>Contactez-moi ${this._name}</h2>
+            <img src="assets/icons/close.svg" onclick="closeModal()"/>
+        </header>
+        <form>
+            <div>
+                <label>Prénom</label>
+                <input
+                        type="text"
+                        required
+                        id="firstname"
+                        name="firstname"
+                        minlength="2"/>
+            </div>
+            <div class="error">Veuillez entrer 2 caractères ou plus pour le champ du prénom.</div>
+            <button class="contact_button">Envoyer</button>
+        </form>
+    </div>
+        `
+    }
+
+    photograhInfos() {
+        return `
+        <div class="photograph-infos">
+        <div class="likes">
+        <div class="likes-counter"></div>
+            <i class="fas fa-heart"></i>
+        </div>
+            
+            <div class="daily-price">${this._price}€ / jour</div>
+        </div>
+        `
+    }
+
+
+
 
 }

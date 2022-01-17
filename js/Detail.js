@@ -4,6 +4,7 @@ class Detail {
         this.photographerId = url.searchParams.get("id");
         this.mainDetails = document.querySelector('#main');
         this.gallerySection = document.querySelector('.gallery');
+
     }
 
     async init() {
@@ -18,6 +19,7 @@ class Detail {
 
 
 
+
         //
 
         this.media.forEach(el => {
@@ -26,13 +28,70 @@ class Detail {
         })
 
 
+        this.photograhInfos = document.querySelector('.photograph-infos')
+        this.photograhInfos.innerHTML = new Photographer(this.photographer).photograhInfos();
+        this.totalLikes = document.querySelector('.likes-counter')
+        this.totalLikes.innerHTML = this.media.map(media => media.likes).reduce((total, value) => total + value)
 
 
-
-        this.mainDetails.insertAdjacentHTML("afterbegin", header)
+        this.mainDetails.insertAdjacentHTML("afterbegin", header);
         this.gallerySection.insertAdjacentHTML("afterbegin", gallery);
+        Lightbox.init(this.media);
+        this.likeClick = this.likeClick.bind(this)
+        document.querySelectorAll('.like-btn').forEach(like => {
+            like.addEventListener('click', this.likeClick, false)
+        })
+
+        const contactBtn = document.querySelector('.contact_button')
+        const contactModal = document.querySelector('#contact_modal')
+        const closeBtn = contactModal.querySelector('img')
+        const textInput = contactModal.querySelector('input')
+        const err = contactModal.querySelector('.error')
+        const submitBtn = contactModal.querySelector('.contact_button')
+        const form = document.querySelector('form')
+        const formData = document.querySelectorAll(".form-data");
+
+        contactBtn.addEventListener('click', e => {
+            contactModal.style.display = 'block';
+        })
+
+        closeBtn.addEventListener('click', e => {
+            contactModal.style.display = 'none';
+        })
+
+        submitBtn.addEventListener('click', e => {
+            e.preventDefault()
+
+            formData.forEach(formData => {
+                formData.querySelectorAll('input').forEach(input => {
+                    const err = input.closest(".form-data").querySelector(".error");
+                    if (!input.validity.valid) {
+
+                        err.classList.add('show');
+
+                    } else {
+
+                        err.classList.remove("show");
+
+                    }
+                })
+            })
+
+        })
+
+
+    }
+
+    likeClick(e) {
+        let likesCounter = e.target.closest('.likes').querySelector('.number-likes')
+        likesCounter.innerHTML = parseInt(likesCounter.innerHTML) + 1
+        this.totalLikes.innerHTML = parseInt(this.totalLikes.innerHTML) + 1
+
+        e.target.removeEventListener('click', this.likeClick)
     }
 }
 
+
 const detail = new Detail()
 detail.init()
+
