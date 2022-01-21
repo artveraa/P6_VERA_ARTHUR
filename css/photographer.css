@@ -1,17 +1,17 @@
-.photographer-infos h2{
+.photographer-infos h2 {
     font-size: 64px;
     color: #D3573C;
     font-weight: lighter;
     margin: 0;
 }
 
-.photographer-city{
+.photographer-city {
     font-size: 24px;
     color: #901C1C;
     margin: 0;
 }
 
-.img-container{
+.img-container {
     width: 200px;
     height: 200px;
     border-radius: 50%;
@@ -26,7 +26,7 @@
     height: 100%;
 }
 
-.photographer-infos .photographer-tagline{
+.photographer-infos .photographer-tagline {
     font-size: 18px;
 }
 
@@ -39,14 +39,14 @@
     width: 50%;
 }
 
-.error{
+.error {
     color: red;
     font-size: .9rem;
     padding: .6rem 0 0 0;
     display: none;
 }
 
-.error.show{
+.error.show {
     display: block;
 }
 
@@ -83,6 +83,7 @@
     justify-content: space-between;
     padding: 35px;
     margin: auto;
+    width: 50vw;
 }
 
 .modal header {
@@ -103,7 +104,7 @@
 
 form {
     display: flex;
-    width: 100%;
+    width: 90%;
     flex-direction: column;
     align-items: flex-start;
 }
@@ -128,7 +129,15 @@ form input {
     border-radius: 5px;
 }
 
-.gallery{
+#textarea{
+    width: 100%;
+    border-radius: 10px;
+    outline: transparent;
+    border: none;
+    height: 100px;
+}
+
+.gallery {
     display: grid;
     grid-template-columns: repeat(3, auto);
     row-gap: 40px;
@@ -136,7 +145,11 @@ form input {
     margin: 40px 100px;
 }
 
-.photographer-media{
+.media{
+    position: relative;
+}
+
+.photographer-media {
     position: relative;
     width: 100%;
     height: 0;
@@ -145,7 +158,7 @@ form input {
     margin: 0;
 }
 
-.media-infos{
+.media-infos {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -154,7 +167,7 @@ form input {
     justify-content: space-between;
 }
 
-.photographer-media img, .photographer-media video{
+.photographer-media img, .photographer-media video {
     position: absolute;
     top: 0;
     left: 0;
@@ -164,11 +177,11 @@ form input {
     height: 90%;
 }
 
-#main{
+#main {
     position: relative;
 }
 
-.photograph-infos{
+.photograph-infos {
     z-index: 2;
     position: fixed;
     bottom: 0;
@@ -184,30 +197,63 @@ form input {
     border-radius: 5px 5px 0 0;
 }
 
-.likes{
+.likes {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 5px;
 }
 
-.lightbox{
+.lightbox {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, .9);
+    transition: opacity .3s;
 }
 
-.lightbox-container{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 50px;
+.lightbox.fadeOut{
+    opacity: 0;
+}
+
+.lightbox-next, .lightbox-prev {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.lightbox-next {
+    right: 15%;
+}
+
+.lightbox-prev {
+    left: 15%;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 5%;
+    right: 15%;
+}
+
+.lightbox-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    height: 0;
+    padding-top: 40%;
+
 }
 
 .lightbox-container img {
-    max-width: 100%;
-    height: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }

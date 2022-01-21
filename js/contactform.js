@@ -10,9 +10,23 @@ contactBtn.addEventListener('click', e => {
     contactModal.style.display = 'block';
 })
 
+function closeForm(e) {
+    if (e.key === 'Escape') {
+        contactModal.style.display = 'none';
+    }
+}
+
 closeBtn.addEventListener('click', e => {
     contactModal.style.display = 'none';
 })
+
+contactModal.addEventListener('keyup', e => {
+    console.log('Hello')
+})
+
+
+
+
 
 submitBtn.addEventListener('click', e => {
     e.preventDefault()
