@@ -9,11 +9,11 @@ class Detail {
 
 
 
-    /*displayMedia(media) {
-
-
-
-    }*/
+    displayMedia(media) {
+        let gallery = "";
+        gallery += media.forEach(el => el.createMedia());
+        this.gallerySection.insertAdjacentHTML("afterbegin", gallery);
+    }
 
     async init() {
         const data = await Api.get('/data/photographers.json')
@@ -27,7 +27,7 @@ class Detail {
         header += Description.createPhotographerDetail();
 
 
-        /*const filtersSelect = document.querySelector('#filters')
+        const filtersSelect = document.querySelector('#filters')
 
         filtersSelect.addEventListener('change', (e) => {
             if (filtersSelect.selectedIndex === 0) {
@@ -41,17 +41,16 @@ class Detail {
                 console.log('Veuillez faire un choix')
             }
 
+            //
             this.displayMedia(mediaObject)
-        })*/
+        })
 
 
-        /*let mediaObject = [];*/
-
+        let mediaObject = [];
         this.media.forEach(el => {
             let media = new MediaFactory(el);
             gallery += media.createMedia();
-            /*let media = new MediaFactory(el);*/
-            /*mediaObject.push(media);*/
+            mediaObject.push(media);
         })
 
 
@@ -64,7 +63,7 @@ class Detail {
 
         this.gallerySection.insertAdjacentHTML("afterbegin", gallery);
         this.mainDetails.insertAdjacentHTML("afterbegin", header);
-        /*this.displayMedia(mediaObject)*/
+        this.displayMedia(mediaObject)
         Lightbox.init(mediaObject);
         this.likeClick = this.likeClick.bind(this)
         document.querySelectorAll('.like-btn').forEach(like => {

@@ -25,9 +25,6 @@ contactModal.addEventListener('keyup', e => {
 })
 
 
-
-
-
 submitBtn.addEventListener('click', e => {
     e.preventDefault()
 
