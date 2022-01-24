@@ -19,8 +19,6 @@ class Image {
         this.likes = data.likes;
         this.id = data.id;
 
-        this.likeSystem = LikeSystem
-
     }
 
     createMedia() {

@@ -7,24 +7,27 @@ class Detail {
 
     }
 
-    displayMedia(media) {
-        let gallery = "";
-        gallery += media.forEach(el => el.createMedia());
-        this.gallerySection.insertAdjacentHTML("afterbegin", gallery);
-    }
+
+
+    /*displayMedia(media) {
+
+
+
+    }*/
 
     async init() {
         const data = await Api.get('/data/photographers.json')
         this.photographer = data.photographers.find((element) => element.id == this.photographerId)
         this.media = data.media.filter((element) => element.photographerId == this.photographerId)
         let header = "";
+        let gallery = "";
 
 
         const Description = new Photographer(this.photographer)
         header += Description.createPhotographerDetail();
 
 
-        const filtersSelect = document.querySelector('#filters')
+        /*const filtersSelect = document.querySelector('#filters')
 
         filtersSelect.addEventListener('change', (e) => {
             if (filtersSelect.selectedIndex === 0) {
@@ -39,14 +42,18 @@ class Detail {
             }
 
             this.displayMedia(mediaObject)
-        })
+        })*/
 
 
-        let mediaObject = [];
+        /*let mediaObject = [];*/
+
         this.media.forEach(el => {
             let media = new MediaFactory(el);
-            mediaObject.push(media);
+            gallery += media.createMedia();
+            /*let media = new MediaFactory(el);*/
+            /*mediaObject.push(media);*/
         })
+
 
 
         this.photograhInfos = document.querySelector('.photograph-infos')
@@ -55,8 +62,9 @@ class Detail {
         this.totalLikes.innerHTML = this.media.map(media => media.likes).reduce((total, value) => total + value)
 
 
+        this.gallerySection.insertAdjacentHTML("afterbegin", gallery);
         this.mainDetails.insertAdjacentHTML("afterbegin", header);
-        this.displayMedia(mediaObject)
+        /*this.displayMedia(mediaObject)*/
         Lightbox.init(mediaObject);
         this.likeClick = this.likeClick.bind(this)
         document.querySelectorAll('.like-btn').forEach(like => {
