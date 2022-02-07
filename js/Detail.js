@@ -9,17 +9,8 @@ class Detail {
 
     displayMedia(media) {
         let gallery = "";
-        media.forEach(element => gallery += element.createMedia());
-        /*gallery += media.map(element => element.createMedia()).join("");*/
-        this.gallerySection.innerHTML = "";
+        gallery += media.forEach(el => el.createMedia());
         this.gallerySection.insertAdjacentHTML("afterbegin", gallery);
-
-        this.likeClick = this.likeClick.bind(this)
-        document.querySelectorAll('.like-btn').forEach(like => {
-            like.addEventListener('click', this.likeClick, false)
-        })
-
-        Lightbox.init(media);
     }
 
     async init() {
@@ -35,12 +26,6 @@ class Detail {
 
         const filtersSelect = document.querySelector('#filters')
 
-        let mediaObject = [];
-        this.media.forEach(el => {
-            let media = new MediaFactory(el);
-            mediaObject.push(media);
-        })
-
         filtersSelect.addEventListener('change', (e) => {
             if (filtersSelect.selectedIndex === 0) {
                 console.log(e.target.value)
@@ -49,20 +34,18 @@ class Detail {
                 })
             } else if (filtersSelect.selectedIndex === 1) {
                 console.log(e.target.value)
-                mediaObject.sort(function (a, b) {
-                    return a.title.localeCompare(b.title)
-                })
-            } else if(filtersSelect.selectedIndex === 2){
-                mediaObject.sort(function (a, b) {
-                    return new Date(b.date) - new Date(a.date)
-                })
-            }
-
-            else {
+            } else {
                 console.log('Veuillez faire un choix')
             }
 
             this.displayMedia(mediaObject)
+        })
+
+
+        let mediaObject = [];
+        this.media.forEach(el => {
+            let media = new MediaFactory(el);
+            mediaObject.push(media);
         })
 
 
@@ -74,8 +57,11 @@ class Detail {
 
         this.mainDetails.insertAdjacentHTML("afterbegin", header);
         this.displayMedia(mediaObject)
-
-
+        Lightbox.init(mediaObject);
+        this.likeClick = this.likeClick.bind(this)
+        document.querySelectorAll('.like-btn').forEach(like => {
+            like.addEventListener('click', this.likeClick, false)
+        })
 
         const contactBtn = document.querySelector('.contact_button')
         const contactModal = document.querySelector('#contact_modal')

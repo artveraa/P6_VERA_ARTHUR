@@ -12,13 +12,14 @@ class MediaFactory {
 }
 
 class Image {
-    constructor(data) {
+    constructor(data, LikeSystem) {
         this.src = data.image;
         this.photographerId = data.photographerId;
         this.title = data.title;
         this.likes = data.likes;
         this.id = data.id;
-        this.date = data.date;
+
+        this.likeSystem = LikeSystem
 
     }
 
@@ -54,7 +55,6 @@ class Video {
         this.title = data.title;
         this.likes = data.likes;
         this.id = data.id;
-        this.date = data.date;
     }
 
     createMedia() {
@@ -67,7 +67,7 @@ class Video {
         </figure>
             <footer class="media-infos">
                 <div class="figcaption">${this.title}</div>
-                <div class="likes"><span class="number-likes">${this.likes}</span><i class="like-btn far fa-heart"></i></div>
+                <div class="likes">${this.likes} <i class="like-btn far fa-heart"></i></div>
             </footer>
 </article>
         
