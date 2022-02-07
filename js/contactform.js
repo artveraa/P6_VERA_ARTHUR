@@ -6,6 +6,11 @@ const err = contactModal.querySelector('.error')
 const submitBtn = contactModal.querySelector('.contact_button')
 const form = document.querySelector('form')
 
+const firstName = form.querySelector('#firstname')
+const lastName = form.querySelector('#lastname')
+const emailAddress = form.querySelector('#email')
+const message = form.querySelector('#textarea')
+
 contactBtn.addEventListener('click', e => {
     contactModal.style.display = 'block';
 })
@@ -21,7 +26,7 @@ closeBtn.addEventListener('click', e => {
 })
 
 contactModal.addEventListener('keyup', e => {
-    console.log('Hello')
+
 })
 
 
@@ -42,7 +47,7 @@ submitBtn.addEventListener('click', e => {
     }
 
     if (form.checkValidity()) {
-        console.log('ok')
+        console.log(`L'utilisateur ${firstName.value} ${lastName.value} vous a envoyé le message suivant : ${message.value}. Répondez-lui à l'adresse : ${emailAddress.value}`)
         contactModal.style.display = "none";
     }
 

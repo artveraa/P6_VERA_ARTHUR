@@ -72,9 +72,10 @@ class Lightbox {
         const dom = document.createElement('div')
         dom.classList.add('lightbox')
         dom.innerHTML = `
-            <button class="lightbox-close">Fermer</button>
-            <button class="lightbox-next">Suivant</button>
-            <button class="lightbox-prev">Précédent</button>
+            <img src="../assets/icons/close.svg" class="lightbox-close">
+            <img src="../assets/icons/arrow-right.svg" class="lightbox-next">
+            <img src="../assets/icons/arrow-right.svg" class="lightbox-prev">
+            <img class="lightbox-prev">
             <div class="lightbox-container">
                 ${this.currentMedia.createLightBoxMedia()}
             </div>
