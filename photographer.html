@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
     <link href="css/style.css" rel="stylesheet" type="text/css"/>
     <meta charset="utf-8">
@@ -11,12 +11,12 @@
 </head>
 <body>
 <header>
-    <img src="assets/images/logo.png" class="logo"/>
+    <img src="assets/images/logo.png" class="logo" alt="Logo Fisheye"/>
 </header>
 <main id="main">
     <div class="select-filter">
         <label for="filters">Trier par : </label>
-        <select name="filters" id="filters">
+        <select name="filters" id="filters" aria-label="Trier par">
             <option value="popularity">Popularité</option>
             <option value="name">Nom</option>
             <option value="date">Date</option>
@@ -29,7 +29,7 @@
     <div class="modal">
         <header>
             <h2>Contactez-moi</h2>
-            <img src="assets/icons/close.svg" onclick="closeModal()"/>
+            <img src="assets/icons/close.svg" alt="Icone pour fermer le formulaire"/>
         </header>
         <form>
             <div class="form-data">

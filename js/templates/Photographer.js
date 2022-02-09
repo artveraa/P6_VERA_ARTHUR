@@ -12,9 +12,9 @@ class Photographer {
     createPhotographerCard() {
         return `
         <article class="photographer" tabindex="3">
-            <a href="./photographer.html?id=${this._id}" >
+            <a href="./photographer.html?id=${this._id}" aria-label="Aller sur la page de ${this._name} basé(e) à ${this._city}, ${this._country} son tarif journalier est de ${this._price}€ par jour. Sa devise est : ${this._tagline}" >
             <img src="../../assets/Photographers%20ID%20Photos/${this._portrait}" alt="${this._name}">
-            <h2 class="photographer-name" tabindex="0"><a href="#">${this._name}</a></h2>
+            <h2 class="photographer-name" tabindex="0"><a href="./photographer.html?id=${this._id}">${this._name}</a></h2>
             <p class="photographer-location">${this._city}, ${this._country}</p>
             <p class="photographer-tagline">${this._tagline}</p>
             <p class="photographer-price">${this._price}€/jour</p>
@@ -27,11 +27,11 @@ class Photographer {
         return `
         <article class="photograph-header">
                 <div class='photographer-infos'>
-                    <h2>${this._name}</h2>
+                    <h1>${this._name}</h1>
                     <p class="photographer-city">${this._city}, ${this._country}</p>
                     <p class="photographer-tagline">${this._tagline}</p>
                 </div>
-                <button class="contact_button" title='Contact Me' tabindex="1">Contactez-moi</button>
+                <button class="contact_button" title='Contact Me' tabindex="1" aria-label="Contacter le/la photographe ${this._name}">Contactez-moi</button>
                 <div class="img-container">
                 
                 <img src="../../assets/Photographers%20ID%20Photos/${this._portrait}" alt="${this._name}">
@@ -45,7 +45,7 @@ class Photographer {
             <div class="modal">
         <header>
             <h2>Contactez-moi ${this._name}</h2>
-            <img src="assets/icons/close.svg" onclick="closeModal()"/>
+            <img src="assets/icons/close.svg" />
         </header>
         <form>
             <div>
@@ -69,10 +69,10 @@ class Photographer {
         <div class="photograph-infos">
         <div class="likes">
         <div class="likes-counter"></div>
-            <i class="fas fa-heart"></i>
+            <i class="fas fa-heart" aria-hidden="true"></i>
         </div>
             
-            <div class="daily-price">${this._price}€ / jour</div>
+            <div class="daily-price" aria-label="Tarif du photographe ${this._price} par jour">${this._price}€ / jour</div>
         </div>
         `
     }

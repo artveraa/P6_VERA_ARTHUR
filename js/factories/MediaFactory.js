@@ -18,20 +18,20 @@ class Image {
         this.title = data.title;
         this.likes = data.likes;
         this.id = data.id;
-
-        this.likeSystem = LikeSystem
+        this.date = data.date;
+        this.alt = data.alt;
 
     }
 
     createMedia() {
         return `
         <article class="media" tabindex="2">
-        <figure class="photographer-media" data-id="${this.id}">
-            <img src="../../assets/medias/${this.photographerId}/${this.src}" />
+        <figure class="photographer-media" data-id="${this.id}" aria-label="${this.title} closeup view">
+            <img src="../../assets/medias/${this.photographerId}/${this.src}" alt="${this.title}"/>
         </figure>
             <footer class="media-infos">
                 <div class="figcaption">${this.title}</div>
-                <div class="likes"><span class="number-likes">${this.likes}</span> <i class="like-btn far fa-heart" tabindex="2"></i></div>
+                <div class="likes"><span class="number-likes" >${this.likes}</span> <i class="like-btn far fa-heart" tabindex="2" aria-label="Ajouter un j'aime"></i></div>
             </footer>
 </article>
         
@@ -60,9 +60,9 @@ class Video {
     createMedia() {
         return `
 <article class="media">
-<figure class="photographer-media" data-id="${this.id}">
+<figure class="photographer-media" data-id="${this.id}" aria-label="${this.title} closeup view">
             <video controls>
-                <source src="../../assets/medias/${this.photographerId}/${this.src}" type="video/mp4" class="video">
+                <source src="../../assets/medias/${this.photographerId}/${this.src}" alt="${this.title}" type="video/mp4" class="video">
             </video>
         </figure>
             <footer class="media-infos">
